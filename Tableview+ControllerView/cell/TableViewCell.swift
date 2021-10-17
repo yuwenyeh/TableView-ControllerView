@@ -85,34 +85,34 @@ class TableViewCell: UITableViewCell{
     
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        print("collectionView.indexpath :",indexPath.row)
+        //print("collectionView.indexpath :",indexPath.row)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+        //print(indexPath.item)
     }
     
     
     @objc func changeBanner(){
-        
-        imageIndex = imageIndex +  1
-        imageIndex = imageIndex % imageArray.count
-        let indexPath: IndexPath = IndexPath(item: imageIndex, section: 0)
-   
-        //imageIndex = (imageIndex - 1 + imageArray.count) % imageArray.count
-        if imageIndex < (imageArray.count - 1)
+      
+     //imageIndex = imageIndex + 1
+        //imageIndex = (imageIndex  + imageArray.count ) % imageArray.count
+       let indexPath: IndexPath = IndexPath(item: imageIndex, section: 0)
+     
+            if imageIndex == imageArray.count - 1
         {
-//            //可控制捲動到某一個cell
-           collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-
-        }else if imageIndex == imageArray.count
-        {
+                print("imageindex = imageArray = ",imageIndex)
             imageIndex = 0
             collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
             changeBanner()
+        }else{
+              //可控制捲動到某一個cell
+            imageIndex = imageIndex + 1
+            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         }
-        
+  
         imageIndex = imageIndex % imageArray.count
+        print(imageIndex)
         pageControl.currentPage = (imageIndex - 1 + imageArray.count) % imageArray.count
     }
     
