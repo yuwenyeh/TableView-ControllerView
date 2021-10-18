@@ -28,7 +28,7 @@ extension TableViewVC:UITableViewDelegate,UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
+        return UIScreen.main.bounds.size.height / 4
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -71,7 +71,7 @@ extension TableViewVC:UITableViewDelegate,UITableViewDataSource {
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-            return 5
+            return 1
       
     }
  
