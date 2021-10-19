@@ -12,11 +12,9 @@ class TableViewCell: UITableViewCell{
     var imageIndex = 0
     var timer : Timer?
     var bannerPageSize:Int = 1
-   // var bannerRotateCounter: Int = 0
     var bannerRotateCounterLimit : Int = 4
     let width = UIScreen.main.bounds.width
-    
-  
+
     var currentIndex: NSInteger = 0
    
     let imageArray :[String] =
@@ -39,7 +37,7 @@ class TableViewCell: UITableViewCell{
          
          collectionView.isPagingEnabled = true//為了實現UICollectionView的分頁
          collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
+         collectionView.showsVerticalScrollIndicator = false
          collectionView.backgroundColor = UIColor.white
          collectionView.delegate = self
          collectionView.dataSource = self
@@ -52,11 +50,11 @@ class TableViewCell: UITableViewCell{
     
     
     lazy var pageControl: UIPageControl = {
-         let pageControl = UIPageControl(frame: CGRect(x: 0, y: 150, width: width , height: 50))
+        let pageControl = UIPageControl(frame: CGRect(x:0, y:self.bounds.size.height , width: self.frame.width , height: 30))
          
         pageControl.currentPage = 0
         pageControl.tintColor = UIColor.black
-        pageControl.numberOfPages = Int(ceil(Double(imageArray.count) / Double(bannerPageSize)))
+        pageControl.numberOfPages = Int(ceil(Double(imageArray.count) / Double(bannerPageSize)))//ceil用來取餘數
         pageControl.currentPageIndicatorTintColor = .black//已選取的顏色
         pageControl.pageIndicatorTintColor = UIColor.gray;//未選取的顏色
         pageControl.hidesForSinglePage = true
@@ -69,8 +67,7 @@ class TableViewCell: UITableViewCell{
         
         setupController()
         setupTimer()
-    
-    
+  
     }
     
     func setupController() {
@@ -82,8 +79,10 @@ class TableViewCell: UITableViewCell{
          
          self.addSubview(pageControl)
      }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        print(indexPath.item)
+       
     }
     
     
@@ -102,23 +101,6 @@ class TableViewCell: UITableViewCell{
       
     }
     
-//    @objc func changeBanner(){
-//
-//       let indexPath: IndexPath = IndexPath(item: imageIndex, section: 0)
-//        if imageIndex == imageArray.count
-//        {
-//            imageIndex = 0
-//            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: false)
-//            changeBanner()
-//        }else{
-//              //可控制捲動到某一個cell
-//            imageIndex = imageIndex + 1
-//            collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-//        }
-//        imageIndex = imageIndex % imageArray.count
-//        pageControl.currentPage = (imageIndex - 1 + imageArray.count) % imageArray.count
-//
-//    }
     
     @objc func rotateBanner() {
         imageIndex += 1
@@ -151,11 +133,8 @@ extension TableViewCell: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
           /// 這步只是防止崩潰
-          if (imageArray.count == 0) {
-              return 0
-          }
-         // return imageArray.count + 2
-        return imageArray.count
+        //return imageArray.count < 0 ? imageArray.count*1000 : 6會閃退
+       return imageArray.count == 0 ? 0 : imageArray.count
       }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -187,49 +166,21 @@ extension TableViewCell: UICollectionViewDelegate {
     //2
     //將開始停止拖移的時候執行
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-   
-        
     }
     
     //5
     //減速停止的時候開始執行
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        cycleScroll()
+ 
+    }
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         setupTimer()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+      
         print("開始自動時間")
-        
-//        if (scrollView.contentOffset.x == 0){
-//
-//            scrollView.contentOffset = CGPoint(x: CGFloat(self.imageArray.count) * width, y: 0)
-//            self.pageControl.currentPage = self.imageArray.count
-//
-//            //當 UIScrollVIew滑動到最後一位停止時，將UIScrollerVIew的偏移位置改變
-//        }else if (scrollView.contentOffset.x == CGFloat(self.imageArray.count + 1) * width){
-//            scrollView.contentOffset = CGPoint(x: width, y: 0)
-//            self.pageControl.currentPage = 0
-//
-//        }
-//        self.pageControl.currentPage = (currentIndex - 1 + imageArray.count) % imageArray.count
-     
-    }
-    
-    func cycleScroll(){
         let page = collectionView.contentOffset.x / collectionView.bounds.size.width
-        if (page == 0){//滾到左邊
-            print("滾到左邊")
-            collectionView.contentOffset = CGPoint(x: collectionView.bounds.size.width * CGFloat((imageArray.count) - 2), y: 0)
-            pageControl.currentPage = (imageArray.count) - 2
-          
-            
-        }else if (page == CGFloat(imageArray.count) - 1) {//滾到右邊
-            collectionView.contentOffset = CGPoint(x: collectionView.bounds.size.width, y: 0)
-            pageControl.currentPage = 0
-            print("滾到右邊")
-        } else {
-            pageControl.currentPage = Int(page) - 1
-        }
+        pageControl.currentPage = Int(page)
     }
-    
-    
-    
 }

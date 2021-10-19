@@ -18,6 +18,9 @@ class TableViewVC: UIViewController {
         tableView.delegate = self
         let Nib = UINib(nibName: "TableViewCell", bundle: nil)
         tableView.register(Nib, forCellReuseIdentifier: "TableViewCell")
+        
+        let CoverNib = UINib(nibName: "CoverCell", bundle: nil)
+        tableView.register(CoverNib, forCellReuseIdentifier: "CoverCell")
     }
 
 
@@ -50,10 +53,15 @@ extension TableViewVC:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        if indexPath.section == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier:"CoverCell" , for: indexPath) as! CoverCell
+            
+            return cell
+        }else{
         let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell") as! TableViewCell
         
         return cell
-        
+        }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -71,7 +79,7 @@ extension TableViewVC:UITableViewDelegate,UITableViewDataSource {
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-            return 1
+            return 2
       
     }
  

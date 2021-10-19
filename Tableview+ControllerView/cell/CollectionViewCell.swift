@@ -12,8 +12,12 @@ class CollectionViewCell: UICollectionViewCell {
 
     
     @IBOutlet weak var colorView: UIView!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var image: UIImageView!
+   
+    @IBOutlet weak var image: UIImageView!{
+        didSet{
+            image.layer.cornerRadius = 20
+        }
+    }
     
     
     

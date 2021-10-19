@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F19B441271E6A0D000EE531 /* CollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B440271E6A0D000EE531 /* CollView.swift */; };
+		0F19B444271EBD91000EE531 /* CoverCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F19B442271EBD91000EE531 /* CoverCell.swift */; };
+		0F19B445271EBD91000EE531 /* CoverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F19B443271EBD91000EE531 /* CoverCell.xib */; };
 		0F7F4ED2270EC99F00E9C67A /* TableViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4ED0270EC99F00E9C67A /* TableViewVC.swift */; };
 		0F7F4ED3270EC99F00E9C67A /* TableViewVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F7F4ED1270EC99F00E9C67A /* TableViewVC.xib */; };
 		0F7F4ED7270ECE0B00E9C67A /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7F4ED5270ECE0B00E9C67A /* TableViewCell.swift */; };
@@ -20,6 +23,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0F19B440271E6A0D000EE531 /* CollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollView.swift; sourceTree = "<group>"; };
+		0F19B442271EBD91000EE531 /* CoverCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverCell.swift; sourceTree = "<group>"; };
+		0F19B443271EBD91000EE531 /* CoverCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoverCell.xib; sourceTree = "<group>"; };
 		0F7F4ED0270EC99F00E9C67A /* TableViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewVC.swift; sourceTree = "<group>"; };
 		0F7F4ED1270EC99F00E9C67A /* TableViewVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewVC.xib; sourceTree = "<group>"; };
 		0F7F4ED5270ECE0B00E9C67A /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -45,6 +51,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0F19B43F271E69E5000EE531 /* 客制CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				0F19B440271E6A0D000EE531 /* CollView.swift */,
+				0F19B442271EBD91000EE531 /* CoverCell.swift */,
+				0F19B443271EBD91000EE531 /* CoverCell.xib */,
+			);
+			path = "客制CollectionView";
+			sourceTree = "<group>";
+		};
 		0F7F4ED4270ECDF500E9C67A /* cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,10 +91,11 @@
 		0F8691EB270EC3FD00C890ED /* Tableview+ControllerView */ = {
 			isa = PBXGroup;
 			children = (
-				0F8691EC270EC3FD00C890ED /* AppDelegate.swift */,
-				0F8691EE270EC3FD00C890ED /* SceneDelegate.swift */,
+				0F19B43F271E69E5000EE531 /* 客制CollectionView */,
 				0F869200270EC41300C890ED /* main */,
 				0F7F4ED4270ECDF500E9C67A /* cell */,
+				0F8691EC270EC3FD00C890ED /* AppDelegate.swift */,
+				0F8691EE270EC3FD00C890ED /* SceneDelegate.swift */,
 				0F8691F5270EC3FF00C890ED /* Assets.xcassets */,
 				0F8691F7270EC3FF00C890ED /* LaunchScreen.storyboard */,
 				0F8691FA270EC3FF00C890ED /* Info.plist */,
@@ -156,6 +173,7 @@
 				0F7F4ED3270EC99F00E9C67A /* TableViewVC.xib in Resources */,
 				0F7F4ED8270ECE0B00E9C67A /* TableViewCell.xib in Resources */,
 				0F8691F9270EC3FF00C890ED /* LaunchScreen.storyboard in Resources */,
+				0F19B445271EBD91000EE531 /* CoverCell.xib in Resources */,
 				0F8691F6270EC3FF00C890ED /* Assets.xcassets in Resources */,
 				0F7F4EDC270ED3D800E9C67A /* CollectionViewCell.xib in Resources */,
 			);
@@ -169,7 +187,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F7F4EDB270ED3D800E9C67A /* CollectionViewCell.swift in Sources */,
+				0F19B444271EBD91000EE531 /* CoverCell.swift in Sources */,
 				0F7F4ED2270EC99F00E9C67A /* TableViewVC.swift in Sources */,
+				0F19B441271E6A0D000EE531 /* CollView.swift in Sources */,
 				0F7F4ED7270ECE0B00E9C67A /* TableViewCell.swift in Sources */,
 				0F8691ED270EC3FD00C890ED /* AppDelegate.swift in Sources */,
 				0F8691EF270EC3FD00C890ED /* SceneDelegate.swift in Sources */,
