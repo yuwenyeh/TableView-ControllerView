@@ -15,15 +15,12 @@ class TableViewCell: UITableViewCell{
     var bannerRotateCounterLimit : Int = 4
     let width = UIScreen.main.bounds.width
 
-    var currentIndex: NSInteger = 0
    
     let imageArray :[String] =
     {
-        var arr = [UIImage]()
         let imageList = ["1","2","3","4"]
         return imageList
     }()
-    
     
     
     lazy var collectionView: UICollectionView = {
@@ -33,7 +30,7 @@ class TableViewCell: UITableViewCell{
          flowLayout.scrollDirection = .horizontal
          flowLayout.itemSize = CGSize(width: width, height: 200)
          
-         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200), collectionViewLayout: flowLayout)
+         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: width, height: 200), collectionViewLayout: flowLayout)
          
          collectionView.isPagingEnabled = true//為了實現UICollectionView的分頁
          collectionView.showsHorizontalScrollIndicator = false
@@ -42,7 +39,7 @@ class TableViewCell: UITableViewCell{
          collectionView.delegate = self
          collectionView.dataSource = self
          collectionView.register(UINib(nibName:"CollectionViewCell", bundle:nil),
-                                forCellWithReuseIdentifier:"CollectionViewCell")
+                               forCellWithReuseIdentifier:"CollectionViewCell")
          self.addSubview(collectionView)
          
          return collectionView
@@ -58,7 +55,7 @@ class TableViewCell: UITableViewCell{
         pageControl.currentPageIndicatorTintColor = .black//已選取的顏色
         pageControl.pageIndicatorTintColor = UIColor.gray;//未選取的顏色
         pageControl.hidesForSinglePage = true
-         return pageControl;
+         return pageControl
      }()
 
  
@@ -72,10 +69,8 @@ class TableViewCell: UITableViewCell{
     
     func setupController() {
          // 設置數據
-        collectionView.register(UINib(nibName:"CollectionViewCell", bundle:nil),
-                                forCellWithReuseIdentifier:"CollectionViewCell")
          collectionView.reloadData()
-         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: false)
+        collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .centeredVertically, animated: false)
          
          self.addSubview(pageControl)
      }
@@ -141,7 +136,7 @@ extension TableViewCell: UICollectionViewDataSource {
         
         let Cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath) as! CollectionViewCell
        
-        if (indexPath.row == self.imageArray.count){
+        if (indexPath.row == 0){
            Cell.imageName = imageArray.first
         }else {
            Cell.imageName = imageArray[indexPath.row]
@@ -179,7 +174,6 @@ extension TableViewCell: UICollectionViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
       
-        print("開始自動時間")
         let page = collectionView.contentOffset.x / collectionView.bounds.size.width
         pageControl.currentPage = Int(page)
     }

@@ -36,18 +36,19 @@ extension TableViewVC:UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        switch section{
-        case 0:
-            return 1
-        case 1:
-            return 1
-        case 2:
-             return 1
-        case 3:
-            return 1
-        default:
-            return 1
-    }
+        return 1
+//        switch section{
+//        case 0:
+//            return 1
+//        case 1:
+//            return 1
+//        case 2:
+//             return 1
+//        case 3:
+//            return 1
+//        default:
+//            return 1
+//    }
     
     }
     
